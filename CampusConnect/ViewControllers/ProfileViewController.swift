@@ -7,24 +7,58 @@
 //
 
 import UIKit
-
-class ProfileViewController: UIViewController {
+import Firebase
+import FirebaseFirestore
+class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    @IBOutlet weak var pickerSkill: UIPickerView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblCampus: UILabel!
+    @IBOutlet weak var lblEmail: UILabel!
+    @IBOutlet weak var lblProgram: UILabel!
+    var db: Firestore!
+    var pickerData: [String] = []
+    
+    @IBAction func unwindToHome(sender: UIStoryboardSegue) {
+        updateProfile()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateProfile()
     }
-    
+   
+    func updateProfile(){
+           db = Firestore.firestore()
+           let ref = db.collection("users").document("zWXtptUUxNOrwf0tTKW65pG5zF12")
+              ref.getDocument { (snapshot, err) in
+                  if let data = snapshot?.data() {
+                   self.lblName.text = data["full_name"] as? String
+                   self.lblProgram.text = data["program"] as? String
+                   self.lblProgram.adjustsFontSizeToFitWidth = true
+                   self.lblEmail.text = data["email"] as? String
+                   self.lblCampus.text = data["campus"] as? String
+                   self.pickerSkill.delegate = self
+                   self.pickerSkill.dataSource = self
+                    self.pickerData = data["skills"] as? [String] ?? ["No skills"]
+                   
+                  } else {
+                      print("Couldn't find the document")
+                  }
+           }
+       }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
-    */
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+
 
 }
