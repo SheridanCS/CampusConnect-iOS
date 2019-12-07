@@ -91,4 +91,5 @@ fastlane/test_output
 
 iOSInjectionProject/
 **/GoogleService-info.plist
+.idea/
 
