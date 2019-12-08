@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User : NSObject {
+class ConnectUser : NSObject {
     var id : String?
     var name : String
     var email : String
