@@ -24,6 +24,10 @@
 		2D8FA43A238444F6000023E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8FA439238444F6000023E6 /* LoginViewController.swift */; };
 		2D8FA43C23844504000023E6 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8FA43B23844504000023E6 /* RegistrationViewController.swift */; };
 		2D8FA440238448FC000023E6 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8FA43F238448FC000023E6 /* UserViewModel.swift */; };
+		2DDD0900239D421E00FFC11A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD08FF239D421E00FFC11A /* Post.swift */; };
+		2DDD0904239D432000FFC11A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD0901239D432000FFC11A /* MessageCell.swift */; };
+		2DDD0905239D432000FFC11A /* SiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD0902239D432000FFC11A /* SiteCell.swift */; };
+		2DDD0906239D432000FFC11A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD0903239D432000FFC11A /* Message.swift */; };
 		2DE1A7732389EE430068CC8D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1A7722389EE430068CC8D /* SceneDelegate.swift */; };
 		2DE1A775238A002E0068CC8D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1A774238A002E0068CC8D /* TabBarViewController.swift */; };
 		EF5C7B1A640B8FDD3E5ABE81 /* Pods_CampusConnect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3749A7982B898654760F0449 /* Pods_CampusConnect.framework */; };
@@ -49,6 +53,10 @@
 		2D8FA439238444F6000023E6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2D8FA43B23844504000023E6 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		2D8FA43F238448FC000023E6 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		2DDD08FF239D421E00FFC11A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		2DDD0901239D432000FFC11A /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		2DDD0902239D432000FFC11A /* SiteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteCell.swift; sourceTree = "<group>"; };
+		2DDD0903239D432000FFC11A /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2DE1A7722389EE430068CC8D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2DE1A774238A002E0068CC8D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		3749A7982B898654760F0449 /* Pods_CampusConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +146,10 @@
 		2D8FA42223843EBA000023E6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2DDD0903239D432000FFC11A /* Message.swift */,
+				2DDD0901239D432000FFC11A /* MessageCell.swift */,
+				2DDD0902239D432000FFC11A /* SiteCell.swift */,
+				2DDD08FF239D421E00FFC11A /* Post.swift */,
 				2D8FA42523844070000023E6 /* Campus.swift */,
 				2D8FA429238440CE000023E6 /* AvailablePrograms.swift */,
 				2D8FA42B2384412C000023E6 /* User.swift */,
@@ -282,14 +294,18 @@
 				2DE1A7732389EE430068CC8D /* SceneDelegate.swift in Sources */,
 				2D1ECDEA23843AFB00233A8A /* AppDelegate.swift in Sources */,
 				2D8FA42A238440CE000023E6 /* AvailablePrograms.swift in Sources */,
+				2DDD0905239D432000FFC11A /* SiteCell.swift in Sources */,
 				2D8FA434238443F8000023E6 /* FeedTableViewController.swift in Sources */,
 				2D8FA42C2384412C000023E6 /* User.swift in Sources */,
+				2DDD0906239D432000FFC11A /* Message.swift in Sources */,
 				2D8FA432238443D1000023E6 /* ProfileViewController.swift in Sources */,
 				2D8FA43C23844504000023E6 /* RegistrationViewController.swift in Sources */,
 				2D8FA43623844415000023E6 /* CollaborationsTableViewController.swift in Sources */,
 				2D8FA42623844070000023E6 /* Campus.swift in Sources */,
 				2D8FA440238448FC000023E6 /* UserViewModel.swift in Sources */,
+				2DDD0900239D421E00FFC11A /* Post.swift in Sources */,
 				2D8FA430238443A3000023E6 /* NewPostViewController.swift in Sources */,
+				2DDD0904239D432000FFC11A /* MessageCell.swift in Sources */,
 				2D8FA43823844436000023E6 /* MessagesTableViewController.swift in Sources */,
 				2DE1A775238A002E0068CC8D /* TabBarViewController.swift in Sources */,
 				2D8FA43A238444F6000023E6 /* LoginViewController.swift in Sources */,
