@@ -84,10 +84,6 @@ class FeedTableViewController: UITableViewController {
                 print("Error getting documents: \(err)")
             } else {
                 
-                let progObj2 = Post()
-                progObj2.initWithData(title: "FAAAGG", dueDate: "Tues Nov 5, 1:00", desc: "this is a project description", numOfStudents: 5, location: "You're a giant homo, you fag")
-                self.posts.append(progObj2)
-                
                 for document in querySnapshot!.documents {
                     
                     let title = document.get("project_title") as! String
