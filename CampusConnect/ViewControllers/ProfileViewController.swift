@@ -28,25 +28,25 @@ class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
         updateProfile()
     }
    
-    func updateProfile(){
-           db = Firestore.firestore()
-           let ref = db.collection("users").document("zWXtptUUxNOrwf0tTKW65pG5zF12")
-              ref.getDocument { (snapshot, err) in
-                  if let data = snapshot?.data() {
-                   self.lblName.text = data["full_name"] as? String
-                   self.lblProgram.text = data["program"] as? String
-                   self.lblProgram.adjustsFontSizeToFitWidth = true
-                   self.lblEmail.text = data["email"] as? String
-                   self.lblCampus.text = data["campus"] as? String
-                   self.pickerSkill.delegate = self
-                   self.pickerSkill.dataSource = self
-                    self.pickerData = data["skills"] as? [String] ?? ["No skills"]
-                   
-                  } else {
-                      print("Couldn't find the document")
-                  }
-           }
-       }
+    func updateProfile() {
+        let uid = Auth.auth().currentUser?.uid
+        db = Firestore.firestore()
+        let ref = db.collection("users").document(uid!)
+        ref.getDocument { (snapshot, err) in
+            if let data = snapshot?.data() {
+                self.lblName.text = data["full_name"] as? String
+                self.lblProgram.text = data["program"] as? String
+                self.lblProgram.adjustsFontSizeToFitWidth = true
+                self.lblEmail.text = data["email"] as? String
+                self.lblCampus.text = data["campus"] as? String
+                self.pickerSkill.delegate = self
+                self.pickerSkill.dataSource = self
+                self.pickerData = data["skills"] as? [String] ?? ["No skills"]
+            } else {
+                print("Couldn't find the document")
+            }
+        }
+    }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

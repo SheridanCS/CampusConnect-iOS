@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseFirestore
+import FirebaseAuth
+
 class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
 
-    var db = Firestore.firestore()
+    let mainDelegate = UIApplication.shared.delegate as! AppDelegate
     var programList = AvailablePrograms()
     var skills = ProfileViewController()
     @IBOutlet weak var txtSkills: UITextField!
@@ -37,22 +37,22 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
     }
     
     func getSkills(){
-           db = Firestore.firestore()
-           let ref = db.collection("users").document("zWXtptUUxNOrwf0tTKW65pG5zF12")
-              ref.getDocument { (snapshot, err) in
-                  if let data = snapshot?.data() {
-                   let temp = data["skills"] as! [String]
-                    self.txtSkills.text = temp.joined(separator: ", ")
-                  } else {
-                      print("Couldn't find the document")
-                  }
-           }
+        let db = mainDelegate.firestoreDB
+        let ref = db!.collection("users").document("zWXtptUUxNOrwf0tTKW65pG5zF12")
+        ref.getDocument { (snapshot, err) in
+            if let data = snapshot?.data() {
+                let temp = data["skills"] as! [String]
+                self.txtSkills.text = temp.joined(separator: ", ")
+            } else {
+                print("Couldn't find the document")
+            }
        }
+   }
 
     
     @IBAction func updateDB(_ sender: Any) {
-        if(txtName.text != "" && txtEmail.text != ""){
-            let ref = db.collection("users").document("zWXtptUUxNOrwf0tTKW65pG5zF12")
+        if (txtName.text != "" && txtEmail.text != ""){
+            let ref = mainDelegate.firestoreDB!.collection("users").document("zWXtptUUxNOrwf0tTKW65pG5zF12")
             let docData: [String: Any] = [
                 "full_name": txtName.text!,
                 "program": picker2Options[pickerProgram.selectedRow(inComponent: 0)],
@@ -69,7 +69,7 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
             let alert = UIAlertController(title: "Succesful", message: "Profile Information Updated", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-        }else{
+        } else {
             let alert = UIAlertController(title: "Error", message: "Please make sure email and name are filled out", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -107,16 +107,22 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
     }
     
     func updateEmail() {
-        let currentUser = Auth.auth().currentUser
-        let db = Database.database().reference()
-        currentUser?.updateEmail(to: txtEmail.text!) { error in
+        let db = mainDelegate.firestoreDB!
+        Auth.auth().currentUser?.updateEmail(to: txtEmail.text!) { error in
             if let error = error {
                 print(error)
-            }else{
+            } else {
                 let uid = Auth.auth().currentUser!.uid
-                let thisUserRef = db.child("users").child("zWXtptUUxNOrwf0tTKW65pG5zF12")
-                let thisUserEmailRef = thisUserRef.child("email")
-                thisUserEmailRef.setValue(self.txtEmail.text!)
+                let userRef = db.collection("users").document(uid)
+                userRef.updateData([
+                    "email": self.txtEmail.text!
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
            }
        }
     }
