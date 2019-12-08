@@ -159,7 +159,7 @@ class ChatViewController: UITableViewController {
 //            }
 //        }
         db.collection("conversations").document(conversationID!).collection("messages").addDocument(data: [
-            "sender": "",
+            "sender": self.mainDelegate.currentUserObj.name,
             "message": message,
             "timestamp": FieldValue.serverTimestamp()
         ])

@@ -33,8 +33,6 @@ class ChatListViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = "Messages"
         self.getConversationIDs()
-//        self.getFriendsInfo()
-        self.refreshTable()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,7 +45,6 @@ class ChatListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell : SiteCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? SiteCell ?? SiteCell (style: .default, reuseIdentifier: "cell")
-        print(indexPath.row)
         tableCell.primaryLabel.text = self.friends[indexPath.row].name
         return tableCell
     }
@@ -78,18 +75,9 @@ class ChatListViewController: UITableViewController {
                         let cUser = ConnectUser()
                         cUser.name = document?.get("full_name") as! String
                         self.friends.append(cUser)
+                        self.refreshTable()
                     }
                 }
-            }
-        }
-    }
-
-    func getFriendsInfo() {
-        for userId in friendsList {
-            mainDelegate.firestoreDB?.collection("users").document(userId).getDocument { (document, err) in
-                let cUser = ConnectUser()
-                cUser.name = document?.get("full_name") as! String
-                self.friends.append(cUser)
             }
         }
     }

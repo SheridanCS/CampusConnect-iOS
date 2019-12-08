@@ -97,8 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func updateCurrentUser() {
         self.firestoreDB?.collection("users").document(self.currentUserId!).getDocument { (document, err) in
             self.currentUserObj = ConnectUser()
-            self.currentUserObj.name = "\(String(describing: document!.data()!["full_name"]))"
-            self.currentUserObj.email = "\(String(describing: document!.data()!["email"]))"
+            self.currentUserObj.name = document!.get("full_name") as! String
+            self.currentUserObj.email = document!.get("email") as! String
         }
     }
 }
