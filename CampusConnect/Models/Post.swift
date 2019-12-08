@@ -11,23 +11,13 @@ import Foundation
 
 class Post: NSObject {
     
-    var title : String
-    var dueDate : String
-    var desc : String
-    var numOfStudents : Int
-    var location : String
+    var title : String?
+    var dueDate : String?
+    var desc : String?
+    var numOfStudents : Int?
+    var location : String?
     
-    override init() {
-        
-        self.title = ""
-        self.dueDate = ""
-        self.desc = ""
-        self.numOfStudents = 0
-        self.location = ""
-        
-    }
-    
-    init(title:String, dueDate:String, desc:String, numOfStudents:Int, location:String) {
+    func initWithData(title:String, dueDate:String, desc:String, numOfStudents:Int, location:String) {
         
         self.title = title
         self.dueDate = dueDate

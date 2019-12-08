@@ -123,14 +123,18 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
 
     @IBAction func savePost(sender : UIButton){
-
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let postDate = dateFormatter.string(from: self.datePick.date)
+        
         db = Firestore.firestore()
 
         db.collection("posts").addDocument(data: [
             "project_title": self.txtTitle.text!,
             "project_desc": self.txtDescription.text!,
-            "num_of_students": self.lblNumOfStudents.text!,
-            "due_date" : self.datePick.date,
+            "num_of_students": Int(self.lblNumOfStudents.text!) ?? 1,
+            "due_date" : postDate,
             "location" : GeoPoint(latitude: localForPost.coordinate.latitude, longitude: localForPost.coordinate.longitude)
             ])
         { err in
@@ -140,6 +144,10 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 print("Document successfully written!")
             }
         }
+        
+        resetForm()
+        tabBarController?.selectedIndex = 0
+        
     }
 
     @IBAction func stepperValueChanged(sender: UIStepper) {
@@ -147,7 +155,34 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
 
     @IBAction func discardPost(sender : UIButton){
-
+        
+        resetForm()
+        
+    }
+    
+    func resetForm() {
+        
+        // Reset Textfields
+        self.txtTitle.text = nil
+        self.txtDescription.text = nil
+        self.txtLocation.text = nil
+        self.lblNumOfStudents.text = "1"
+        
+        // Reset Date Picker and Stepper
+        datePick.setDate(Date(), animated: true)
+        stepper.value = 1
+        
+        // Reset MapView
+        self.myMapView.removeAnnotations(self.myMapView.annotations)
+        self.myMapView.removeOverlays(self.myMapView.overlays)
+        
+        // Drop pin and center on initial location
+        centerMapOnLocation(location: initialLocation)
+        let dropPin = MKPointAnnotation()
+        dropPin.coordinate = initialLocation.coordinate
+        self.myMapView.addAnnotation(dropPin)
+        self.myMapView.selectAnnotation( dropPin, animated: true)
+        
     }
 
 }
