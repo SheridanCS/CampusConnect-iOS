@@ -21,8 +21,10 @@ class FeedTableViewCell : UITableViewCell {
 class FeedTableViewController: UITableViewController {
     var mainDelegate = UIApplication.shared.delegate as! AppDelegate
     var posts : [Post] = []
+    var selectedPost : Int = 0
     
     @IBOutlet var myTableView: UITableView!
+    @IBAction func unwindToFeed(sender: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,18 @@ class FeedTableViewController: UITableViewController {
         tableCell.postDueDateLabel.text = posts[rowNum].dueDate
 
         return tableCell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPost = indexPath.row
+        performSegue(withIdentifier: "ShowSinglePostSegue", sender: nil)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowSinglePostSegue") {
+            let vc: PostViewController = segue.destination as! PostViewController
+            vc.post = self.posts[selectedPost]
+        }
     }
     
     var lat : Double?

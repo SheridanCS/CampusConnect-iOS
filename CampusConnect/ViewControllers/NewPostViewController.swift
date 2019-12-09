@@ -15,15 +15,14 @@ import MapKit
 class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, MKMapViewDelegate {
 
     @IBOutlet var myMapView : MKMapView!
-
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var datePick: UIDatePicker!
     @IBOutlet weak var txtDescription: UITextView!
     @IBOutlet weak var lblNumOfStudents: UILabel!
     @IBOutlet weak var txtLocation: UITextField!
-
     @IBOutlet weak var stepper: UIStepper!
 
+    var mainDelegate = UIApplication.shared.delegate as! AppDelegate
     let locationManager = CLLocationManager()
     let initialLocation = CLLocation(latitude: 43.469053, longitude: -79.699467)
 
@@ -128,9 +127,10 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let postDate = dateFormatter.string(from: self.datePick.date)
         
-        db = Firestore.firestore()
+        db = mainDelegate.firestoreDB!
 
         db.collection("posts").addDocument(data: [
+            "poster_id": mainDelegate.currentUserId!,
             "project_title": self.txtTitle.text!,
             "project_desc": self.txtDescription.text!,
             "num_of_students": Int(self.lblNumOfStudents.text!) ?? 1,

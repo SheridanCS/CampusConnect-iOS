@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var tfPassword : UITextField!
 
     // MARK: Control Methods
-    @IBAction func unwindToHome(sender: UIStoryboardSegue) {}
+    @IBAction func unwindToLogin(sender: UIStoryboardSegue) {}
     @IBAction func doLogin() {
         self.doFirebaseLogin(username: tfEmail.text!, password: tfPassword.text!)
     }

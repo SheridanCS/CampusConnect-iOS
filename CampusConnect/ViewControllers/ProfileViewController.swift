@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     var db: Firestore!
     var pickerData: [String] = []
     
-    @IBAction func unwindToHome(sender: UIStoryboardSegue) {
+    @IBAction func unwindToProfile(sender: UIStoryboardSegue) {
         updateProfile()
     }
 
