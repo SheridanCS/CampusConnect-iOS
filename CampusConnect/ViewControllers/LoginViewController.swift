@@ -9,6 +9,13 @@
 import UIKit
 import FirebaseAuth
 
+/**
+    ViewController to handle login functionality.
+
+    - Parameter name: The full name of the user.
+    - Returns: self.
+    - Author: Your name
+*/
 class LoginViewController: UIViewController {
 
     var mainDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -40,6 +47,12 @@ class LoginViewController: UIViewController {
 
     }
 
+    /**
+        Perform login through Firebase Auth.
+
+        - Parameter username: Email address of the user.
+        - Parameter password: Password of the user.
+    */
     func doFirebaseLogin(username: String, password: String) {
         Auth.auth().signIn(withEmail: username, password: password) { [weak self] authResult, error in
             if error != nil {
@@ -52,6 +65,13 @@ class LoginViewController: UIViewController {
         }
     }
 
+    /**
+        Present an alert with the given title, message, and style.
+
+        - Parameter title: Title of the alert.
+        - Parameter message: Message to put in body of the alert.
+        - Parameter preferredStyle: Style to apply to the alert.
+    */
     func presentAlert(title: String, message: String, preferredStyle: UIAlertController.Style) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         let okayAction = UIAlertAction(title: "Okay", style: .default, handler: { (alert: UIAlertAction!) in

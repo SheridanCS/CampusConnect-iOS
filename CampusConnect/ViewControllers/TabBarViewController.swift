@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+    View controller to handle any extra functionality associated with the Tab Bar.
+
+    - Author: Timothy Catibog
+*/
 class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {

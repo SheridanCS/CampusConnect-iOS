@@ -9,6 +9,11 @@
 import UIKit
 import FirebaseAuth
 
+/**
+    View controller class to handle registration.
+
+    - Author: Timothy Catibog
+*/
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
 
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -17,6 +22,11 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var tfPassword1 : UITextField!
     @IBOutlet var tfPassword2 : UITextField!
 
+    /**
+        Storyboard connected button to initiate the registration process.
+
+        - Parameter sender: UI object used to perform the action.
+    */
     @IBAction func register(sender : UIButton) {
         if isValidUserInfo() {
             self.doFirebaseRegistration(username: tfEmail.text!, password: tfPassword1.text!)
@@ -26,8 +36,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     // MARK: ViewController Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     // MARK: UITextFieldDelegate
@@ -35,10 +43,13 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {}
 
+    /**
+        Validate the information given to register. Presents an alert if data is found to be invalid.
+
+        - Returns: Bool.
+    */
     func isValidUserInfo() -> Bool {
         if tfName.text!.isEmpty {
             presentAlert(title: "Missing Information", message: "Full name is required", preferredStyle: .alert)
@@ -60,6 +71,12 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
+    /**
+        Attempt to register the user with the given username and password credentials.
+
+        - Parameter username: Username of the user.
+        - Parameter password: Password of the user.
+    */
     func doFirebaseRegistration(username: String, password: String) {
         Auth.auth().createUser(withEmail: username, password: password) { authResult, error in
             if error != nil {
@@ -72,16 +89,21 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     "program": AvailablePrograms().programs[0],
                     "skills": []
                 ])
-//                self.mainDelegate.firestoreDB?.collection("user_chat_list").document((authResult?.user.uid)!).setData
                 self.dismiss(animated: true, completion: nil)
             }
         }
     }
 
+    /**
+        Convenience method to create and present an alert for a given title, message, and style.
+
+        - Parameter title: Title of the alert.
+        - Parameter message: Message to go into body of the alert.
+        - Parameter preferredStyle: Style to apply to the alert.
+    */
     func presentAlert(title: String, message: String, preferredStyle: UIAlertController.Style) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         let okayAction = UIAlertAction(title: "Okay", style: .default, handler: { (alert: UIAlertAction!) in
-//            self.dismiss(animated: true, completion: nil)
         })
 
         alertController.addAction(okayAction)

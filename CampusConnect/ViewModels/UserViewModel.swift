@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
+/**
+    NOT IN USE.
+    ViewModel to handle the interactions between the view controller and the model.
+
+    - Author: Timothy Catibog
+*/
 struct UserModel {
     let user : User
 }
