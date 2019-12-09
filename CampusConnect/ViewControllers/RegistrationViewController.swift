@@ -67,9 +67,13 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             } else {
                 self.mainDelegate.firestoreDB?.collection("users").document((authResult?.user.uid)!).setData([
                     "full_name": self.tfName.text!,
-                    "email": self.tfEmail.text!
+                    "email": self.tfEmail.text!,
+                    "campus": Campus.trafalgar.rawValue,
+                    "program": AvailablePrograms().programs[0],
+                    "skills": []
                 ])
-                self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+//                self.mainDelegate.firestoreDB?.collection("user_chat_list").document((authResult?.user.uid)!).setData
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -77,7 +81,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     func presentAlert(title: String, message: String, preferredStyle: UIAlertController.Style) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         let okayAction = UIAlertAction(title: "Okay", style: .default, handler: { (alert: UIAlertAction!) in
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
         })
 
         alertController.addAction(okayAction)

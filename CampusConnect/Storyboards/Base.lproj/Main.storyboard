@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="CampusConnect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="BYZ-38-t0r" customClass="LoginViewController" customModule="CampusConnect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,6 +101,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="bfi-P5-QeO"/>
                     <connections>
                         <outlet property="tfEmail" destination="W0k-qh-51x" id="3DP-jO-LF1"/>
                         <outlet property="tfPassword" destination="FDh-Fy-5DQ" id="0es-pW-Vh8"/>
@@ -123,7 +124,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="Register" id="8ro-P8-Wam">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="5K9-XL-rln">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="5K9-XL-rln">
                                             <connections>
                                                 <segue destination="7Yf-yL-6tl" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToHomeWithSender:" id="HGb-Bz-lYH"/>
                                             </connections>
@@ -494,10 +495,13 @@
                                     <navigationItem id="ajb-V4-o0D">
                                         <barButtonItem key="leftBarButtonItem" title="Logout" id="e16-i4-mtH">
                                             <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="doLogoutWithSender:" destination="ZGk-gw-y0Q" id="TTD-xr-fZB"/>
+                                            </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Edit" id="SzT-CO-1jR">
                                             <connections>
-                                                <segue destination="OXH-7M-R6k" kind="presentation" modalPresentationStyle="automatic" id="oIZ-a1-Kjg"/>
+                                                <segue destination="OXH-7M-R6k" kind="presentation" identifier="unwindToProfile" modalPresentationStyle="automatic" id="oIZ-a1-Kjg"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -616,83 +620,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8m-Nf-ehJ">
-                                <rect key="frame" x="51" y="137" width="103" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Full Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8m-Nf-ehJ">
+                                <rect key="frame" x="20" y="76" width="81" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwl-kb-p2X">
-                                <rect key="frame" x="51" y="206" width="46" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Campus:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mol-Np-GR5">
-                                <rect key="frame" x="37" y="296" width="68" height="21"/>
+                                <rect key="frame" x="20" y="167" width="46" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Program" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyQ-xf-VDc">
-                                <rect key="frame" x="39" y="383" width="66" height="21"/>
+                                <rect key="frame" x="20" y="349" width="66" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Skills" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfo-sC-J66">
-                                <rect key="frame" x="52" y="482" width="40" height="21"/>
+                                <rect key="frame" x="20" y="440" width="40" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XUr-Yu-cvg">
-                                <rect key="frame" x="193" y="200" width="97" height="34"/>
+                                <rect key="frame" x="20" y="196" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vuC-6A-cln">
-                                <rect key="frame" x="193" y="482" width="97" height="34"/>
+                                <rect key="frame" x="20" y="469" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rVm-xx-swT">
-                                <rect key="frame" x="123" y="264" width="275" height="85"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="OXH-7M-R6k" id="Cep-w0-IN8"/>
-                                    <outlet property="delegate" destination="OXH-7M-R6k" id="rZG-20-hKn"/>
-                                </connections>
-                            </pickerView>
-                            <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lbb-fG-G2a">
-                                <rect key="frame" x="123" y="370" width="275" height="85"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="OXH-7M-R6k" id="7aj-eo-J9R"/>
-                                    <outlet property="delegate" destination="OXH-7M-R6k" id="cbV-DO-Y60"/>
-                                </connections>
-                            </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8i-Rz-8ab">
-                                <rect key="frame" x="170" y="605" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="updateDB:" destination="OXH-7M-R6k" eventType="touchUpInside" id="tcc-Qj-A86"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="67y-1J-CIJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Edit Profile" id="Nln-GN-9Gi">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="9PL-db-UWT">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="9PL-db-UWT">
                                             <connections>
                                                 <segue destination="Dvl-mh-GSd" kind="unwind" unwindAction="unwindToProfileWithSender:" id="noH-mK-c1s"/>
                                             </connections>
@@ -701,28 +674,58 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3H8-IJ-uUa">
-                                <rect key="frame" x="193" y="131" width="97" height="34"/>
+                                <rect key="frame" x="20" y="105" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Campus:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mol-Np-GR5">
+                                <rect key="frame" x="20" y="258" width="68" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WqQ-dN-18a">
+                                <rect key="frame" x="20" y="287" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OLY-gr-NPv">
+                                <rect key="frame" x="20" y="378" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8i-Rz-8ab">
+                                <rect key="frame" x="20" y="551" width="374" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateDB:" destination="OXH-7M-R6k" eventType="touchUpInside" id="tcc-Qj-A86"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Mph-E1-2Uk"/>
                     </view>
                     <navigationItem key="navigationItem" id="fNa-b7-V5K"/>
                     <connections>
-                        <outlet property="pickerCampus" destination="rVm-xx-swT" id="3m8-eZ-rd1"/>
-                        <outlet property="pickerProgram" destination="lbb-fG-G2a" id="nQR-rz-cCT"/>
+                        <outlet property="txtCampus" destination="WqQ-dN-18a" id="W0m-p1-GE7"/>
                         <outlet property="txtEmail" destination="XUr-Yu-cvg" id="l5g-oM-W0N"/>
                         <outlet property="txtName" destination="3H8-IJ-uUa" id="zl2-2k-fgL"/>
+                        <outlet property="txtProgram" destination="OLY-gr-NPv" id="hfH-bY-U0a"/>
                         <outlet property="txtSkills" destination="vuC-6A-cln" id="orL-dd-JWu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz0-w3-a3n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Dvl-mh-GSd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3281" y="1609"/>
+            <point key="canvasLocation" x="3279.7101449275365" y="1608.4821428571429"/>
         </scene>
         <!--Feed-->
         <scene sceneID="E5a-uS-2Uu">
@@ -798,9 +801,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="Sl3-9n-X8K">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="hAT-V4-UWI">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="hAT-V4-UWI">
                                             <connections>
                                                 <segue destination="bUo-c4-oKr" kind="unwind" unwindAction="unwindToFeedWithSender:" id="23M-z5-UW7"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="paperplane" catalog="system" id="37W-3v-NZ5">
+                                            <connections>
+                                                <action selector="sendMessageWithSender:" destination="OBD-nd-bIK" id="4Xm-9b-hQG"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -941,8 +949,10 @@
         <image name="banner.png" width="772" height="250"/>
         <image name="doc.plaintext" catalog="system" width="56" height="64"/>
         <image name="message" catalog="system" width="64" height="56"/>
+        <image name="paperplane" catalog="system" width="64" height="60"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
         <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
 </document>

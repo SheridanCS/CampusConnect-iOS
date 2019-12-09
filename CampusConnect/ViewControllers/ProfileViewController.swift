@@ -2,13 +2,14 @@
 //  ProfileViewController.swift
 //  CampusConnect
 //
-//  Created by Timothy Catibog on 2019-11-19.
+//  Created by Stefan Tanaskovic on 2019-11-19.
 //  Copyright © 2019 PROG31975. All rights reserved.
-//
+//  Display Users information and the ability to logout
 
 import UIKit
 import Firebase
 import FirebaseFirestore
+
 class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
     
     @IBOutlet weak var pickerSkill: UIPickerView!
@@ -19,16 +20,40 @@ class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     var db: Firestore!
     var pickerData: [String] = []
     
+    
+    //return back to page from EditProfileView and update the users information
     @IBAction func unwindToProfile(sender: UIStoryboardSegue) {
         updateProfile()
     }
 
+    //Logs out of application by calling firebaseAuth.signOut()
+    @IBAction func doLogout(sender: UIBarButtonItem) {
+        print("Logging out...")
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            self.dismiss(animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        //load users information on load
+        updateProfile()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //update users information on viewDidAppear
         updateProfile()
     }
    
+    //update profile method that reads from the firestore and accesses users
+    //unique information and sets it to the appropriate labels
     func updateProfile() {
+        //users unique id
         let uid = Auth.auth().currentUser?.uid
         db = Firestore.firestore()
         let ref = db.collection("users").document(uid!)
@@ -47,7 +72,7 @@ class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
             }
         }
     }
-
+    //Required pickerView methods
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -59,6 +84,4 @@ class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
-
-
 }
