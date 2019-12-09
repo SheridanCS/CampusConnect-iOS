@@ -124,7 +124,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="Register" id="8ro-P8-Wam">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="5K9-XL-rln">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="5K9-XL-rln">
                                             <connections>
                                                 <segue destination="7Yf-yL-6tl" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToHomeWithSender:" id="HGb-Bz-lYH"/>
                                             </connections>
@@ -665,7 +665,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Edit Profile" id="Nln-GN-9Gi">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="9PL-db-UWT">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="9PL-db-UWT">
                                             <connections>
                                                 <segue destination="Dvl-mh-GSd" kind="unwind" unwindAction="unwindToProfileWithSender:" id="noH-mK-c1s"/>
                                             </connections>
