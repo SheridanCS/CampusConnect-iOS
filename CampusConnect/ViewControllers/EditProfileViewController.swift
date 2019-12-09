@@ -4,12 +4,16 @@
 //
 //  Created by Stefan Tanaskovic on 2019-11-29.
 //  Copyright © 2019 PROG31975. All rights reserved.
-//  Access firestore and allow users to update
-//  their profile information
+
 
 import UIKit
 import FirebaseAuth
 
+/**
+    ViewController that handles editing user profile information
+ 
+    - Author: Stefan Tanaskovic
+*/
 class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
 
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -24,6 +28,9 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
     @IBOutlet weak var txtProgram : UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtName: UITextField!
+    /**
+        View life cycle method that initializes textfields and pickerViews 
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,14 +52,14 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
         getSkills()
     }
     
-    //Reads firestore and gets users current skills that were
-    //previously added
+    /**
+        Gets users current skills from firestore database and appeneds it to skills label
+    */
     func getSkills(){
         let db = mainDelegate.firestoreDB
         let ref = db!.collection("users").document(mainDelegate.currentUserId!)
         ref.getDocument { (snapshot, err) in
             if let data = snapshot?.data() {
-                //Reads text as one string 
                 let temp = data["skills"] as! [String]
                 self.txtSkills.text = temp.joined(separator: ", ")
             } else {
@@ -61,11 +68,14 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
        }
    }
 
-    //Updates users information and stores update in firestore
+    /**
+        Accesses users information from firestore and updates/overwrite fields according to user changes
+     
+        - Parameter name: Sender from button
+    */
     @IBAction func updateDB(_ sender: Any) {
         if (txtName.text != "" && txtEmail.text != "") {
             let ref = mainDelegate.firestoreDB!.collection("users").document(mainDelegate.currentUserId!)
-            //Writing to database with update information
             let docData: [String: Any] = [
                 "full_name": txtName.text!,
                 "program": pckProgramOptions[pckProgram.selectedRow(inComponent: 0)],
@@ -78,19 +88,18 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
                     print("Error writing document: \(err)")
                 }
             }
-            //Changes email login information
+
             if txtEmail.text != Auth.auth().currentUser?.email! {
                 updateEmail()
             }
             self.dismiss(animated: true, completion: nil)
         } else {
-            //alert asking users to fill in the requiered textboxes
             let alert = UIAlertController(title: "Error", message: "Please make sure email and name are filled out", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
-    //pickerView methods for two different pickerViews
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -112,7 +121,10 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
         self.view.endEditing(true)
     }
     
-    //update users login email credential
+
+    /**
+        Updates users login email credential in the firestore database
+    */
     func updateEmail() {
         let db = mainDelegate.firestoreDB!
         Auth.auth().currentUser?.updateEmail(to: txtEmail.text!) { error in
