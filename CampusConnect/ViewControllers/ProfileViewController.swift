@@ -39,6 +39,11 @@ class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
         super.viewDidLoad()
         updateProfile()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateProfile()
+    }
    
     func updateProfile() {
         let uid = Auth.auth().currentUser?.uid

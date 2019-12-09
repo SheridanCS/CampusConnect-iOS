@@ -501,7 +501,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Edit" id="SzT-CO-1jR">
                                             <connections>
-                                                <segue destination="OXH-7M-R6k" kind="presentation" modalPresentationStyle="automatic" id="oIZ-a1-Kjg"/>
+                                                <segue destination="OXH-7M-R6k" kind="presentation" identifier="unwindToProfile" modalPresentationStyle="automatic" id="oIZ-a1-Kjg"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

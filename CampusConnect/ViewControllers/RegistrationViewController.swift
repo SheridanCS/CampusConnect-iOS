@@ -69,7 +69,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     "full_name": self.tfName.text!,
                     "email": self.tfEmail.text!,
                     "campus": Campus.trafalgar.rawValue,
-                    "program": AvailablePrograms().programs[0]
+                    "program": AvailablePrograms().programs[0],
+                    "skills": []
                 ])
                 self.dismiss(animated: true, completion: nil)
             }

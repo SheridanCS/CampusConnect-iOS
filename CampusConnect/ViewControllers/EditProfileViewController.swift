@@ -59,7 +59,7 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
 
     
     @IBAction func updateDB(_ sender: Any) {
-        if (txtName.text != "" && txtEmail.text != ""){
+        if (txtName.text != "" && txtEmail.text != "") {
             let ref = mainDelegate.firestoreDB!.collection("users").document(mainDelegate.currentUserId!)
             let docData: [String: Any] = [
                 "full_name": txtName.text!,
@@ -76,9 +76,7 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
             if txtEmail.text != Auth.auth().currentUser?.email! {
                 updateEmail()
             }
-            let alert = UIAlertController(title: "Succesful", message: "Profile Information Updated", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Error", message: "Please make sure email and name are filled out", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
