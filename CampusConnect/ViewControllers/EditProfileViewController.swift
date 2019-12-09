@@ -12,28 +12,36 @@ import FirebaseAuth
 class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
 
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
-    var programList = AvailablePrograms()
+    let pckCampusOptions : [String] = ["Davis","Hazel McCallion","Trafalgar"]
+    let pckProgramOptions : [String] = AvailablePrograms().programs
+
+    let pckCampus : UIPickerView! = UIPickerView()
+    let pckProgram : UIPickerView! = UIPickerView()
     var skills = ProfileViewController()
     @IBOutlet weak var txtSkills: UITextField!
-    @IBOutlet weak var pickerProgram: UIPickerView!
-    @IBOutlet weak var pickerCampus: UIPickerView!
+    @IBOutlet weak var txtCampus : UITextField!
+    @IBOutlet weak var txtProgram : UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtName: UITextField!
-    var picker1Options = [] as [String]
-    var picker2Options = [] as [String]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pickerProgram.delegate = self
-        self.pickerProgram.dataSource = self
-        self.pickerCampus.delegate = self 
-        self.pickerCampus.dataSource = self
-        
-        picker1Options = ["Davis","Hazel McCallion","Trafalgar"]
-        picker2Options = programList.programs
+
+        self.txtName.text = mainDelegate.currentUserObj.name
+        self.txtEmail.text = mainDelegate.currentUserObj.email
+        self.txtCampus.text = mainDelegate.currentUserObj.campus.rawValue
+        self.txtProgram.text = mainDelegate.currentUserObj.program
+
+        pckCampus.delegate = self
+        pckCampus.dataSource = self
+        pckCampus.tag = 0
+        txtCampus.inputView = pckCampus
+
+        pckProgram.delegate = self
+        pckProgram.dataSource = self
+        pckProgram.tag = 1
+        txtProgram.inputView = pckProgram
+
         getSkills()
-
-
-        // Do any additional setup after loading the view.
     }
     
     func getSkills(){
@@ -55,10 +63,10 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
             let ref = mainDelegate.firestoreDB!.collection("users").document(mainDelegate.currentUserId!)
             let docData: [String: Any] = [
                 "full_name": txtName.text!,
-                "program": picker2Options[pickerProgram.selectedRow(inComponent: 0)],
+                "program": pckProgramOptions[pckProgram.selectedRow(inComponent: 0)],
                 "email": txtEmail.text!,
                 "skills" : txtSkills.text!.components(separatedBy: ","),
-                "campus" : picker1Options[pickerCampus.selectedRow(inComponent: 0)]
+                "campus" : pckCampusOptions[pckCampus.selectedRow(inComponent: 0)]
             ]
             ref.setData(docData) { err in
                 if let err = err {
@@ -83,29 +91,20 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 1 {
-            return picker1Options.count
-        } else {
-            return picker2Options.count
-        }
+        return pickerView.tag == 0 ? pckCampusOptions.count : pckProgramOptions.count
     }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var pickerLabel: UILabel? = (view as? UILabel)
-        if pickerLabel == nil {
-            pickerLabel = UILabel()
-            pickerLabel?.font = UIFont(name: "Ariel", size: 8)
-            pickerLabel?.textAlignment = .center
-        }
-        pickerLabel?.adjustsFontSizeToFitWidth = true
 
-        if pickerView.tag == 1 {
-            pickerLabel?.text = picker1Options[row]
-            return pickerLabel!
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerView.tag == 0 ? pckCampusOptions[row] : pckProgramOptions[row]
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 0 {
+            txtCampus.text = pckCampusOptions[row]
         } else {
-            pickerLabel?.text = picker2Options[row]
-            return pickerLabel!
+            txtProgram.text = pckProgramOptions[row]
         }
+        self.view.endEditing(true)
     }
     
     func updateEmail() {
@@ -128,5 +127,4 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
            }
        }
     }
-
 }

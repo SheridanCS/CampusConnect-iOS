@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+
 class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
     
     @IBOutlet weak var pickerSkill: UIPickerView!
@@ -21,6 +22,17 @@ class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     
     @IBAction func unwindToProfile(sender: UIStoryboardSegue) {
         updateProfile()
+    }
+
+    @IBAction func doLogout(sender: UIBarButtonItem) {
+        print("Logging out...")
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            self.dismiss(animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
 
     override func viewDidLoad() {
@@ -59,6 +71,4 @@ class ProfileViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
-
-
 }

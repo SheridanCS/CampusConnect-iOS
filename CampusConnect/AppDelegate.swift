@@ -25,58 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         firestoreDB = Firestore.firestore()
 
-        //MARK:WRITING
-//        let currentDateTime = Date()
-//        let formatter = DateFormatter()
-//        formatter.timeStyle = .medium
-//        formatter.dateStyle = .long
-//        let time = formatter.string(from: currentDateTime)
-//
-//        firestoreDB!.collection("conversations").document("conversation_id_1").setData([
-//            time : ["sender":"laura", "message":"hello"]
-//        ]) { err in
-//            if let err = err {
-//                print("Error writing document: \(err)")
-//            } else {
-//                print("Document successfully written!")
-//            }
-//        }
-//
-//        firestoreDB!.collection("user_chat_list").document("user_id_1").setData([
-//            "ID": ["conversation_id_1","conversation_id_2"]
-//        ]) { err in
-//            if let err = err {
-//                print("Error writing document: \(err)")
-//            } else {
-//                print("Document successfully written!")
-//            }
-//        }
-
-        //MARK: READING
-//        firestoreDB!.collection("users").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//
-//                    let newUser = User()
-//                    newUser.id = document.documentID
-//                    newUser.name = document.get("full_name") as! String
-//                    newUser.email = document.get("email") as! String
-//
-//                    if newUser.name == "Laura"{
-//                        self.currentUser = newUser
-//                    }
-//                    else {
-//                        //ADD ONTO PEOPLE LIST
-//                        print("adding to people array, user id and name:", newUser.id!, "---", newUser.name)
-//                        self.people.append(newUser)
-//                    }
-//
-//                }
-//            }
-//        }
-
         return true
     }
 
@@ -99,6 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.currentUserObj = ConnectUser()
             self.currentUserObj.name = document!.get("full_name") as! String
             self.currentUserObj.email = document!.get("email") as! String
+            let campus = document!.get("campus") as! String
+            let program = document!.get("program") as! String
+            if !campus.isEmpty {
+                self.currentUserObj.campus = Campus(rawValue: campus)!
+            }
+            if !program.isEmpty {
+                self.currentUserObj.program = program
+            }
         }
     }
 }
