@@ -3,8 +3,10 @@
 //  CampusCollab
 //
 //  Created by Brian Mulhall on 2019-12-06.
-//  Copyright © 2019 Laura Gonzalez. All rights reserved.
-//
+
+// Author: Brian Mulhall
+// This is the Post Object, holds atributes of poster ID, title,
+// due date, description, number of collaborators, and location of project.
 
 import UIKit
 import Foundation
@@ -17,6 +19,7 @@ class Post: NSObject {
     var numOfStudents : Int?
     var location : String?
     
+    // This is the initializes the post with all of it's data for the iphone application
     func initWithData(title: String, dueDate: String, desc: String, numOfStudents: Int, location: String) {
         
         self.title = title
@@ -27,6 +30,7 @@ class Post: NSObject {
         
     }
     
+    // This is an initializer that creates a post object with less data to send to the watch.
     func initWithLessData(title:String, dueDate:String) {
         
         self.title = title

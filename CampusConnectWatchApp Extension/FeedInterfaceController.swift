@@ -10,7 +10,11 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 
-
+/**
+    This is the InterfaceController for the watch app screen that displays the pists from the phone app, using a table.
+ 
+    - Author: Brian Mulhall
+*/
 class FeedInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     @IBOutlet weak var feedTable: WKInterfaceTable!
@@ -21,7 +25,9 @@ class FeedInterfaceController: WKInterfaceController, WCSessionDelegate {
         
     }
     
-    
+    /**
+        On awake fthe watch will initialize a connection with the phone.
+    */
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -36,12 +42,18 @@ class FeedInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         
     }
+    
+    /**
+        Function override from WatchKit, is called just before the watch view controller is about to be visible to user
+         It unachrvies the message sent from the phone after sending a request. Had some issues with UnArchiver, which is described bellow. - Brian
+    */
 
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
+        
         super.willActivate()
         
         Swift.print("Will Activate now...??")
@@ -56,7 +68,7 @@ class FeedInterfaceController: WKInterfaceController, WCSessionDelegate {
             WCSession.default.sendMessage(message, replyHandler: { (result)
                 in
                 
-                if result["postData"] != nil {
+                if result["postDat"] != nil {
                     
                     Swift.print("Message result good...")
                     
@@ -91,14 +103,18 @@ class FeedInterfaceController: WKInterfaceController, WCSessionDelegate {
                     print("Message result was nil...")
                     
                     // Here's some test cells to make sure it works.
-                    self.feedTable.setNumberOfRows(4, withRowType: "FeedRow")
+                    self.feedTable.setNumberOfRows(3, withRowType: "FeedRow")
                     
-                    for index in 0...3 {
+                    let titles : [String] = ["iOS Project", "Simple Project", "Portraits"]
+                    let dates : [String] = ["2019-12-09", "2020-03-02", "2020-04-01"]
+                    
+                    for index in 0...2 {
                         
                         let row = self.feedTable.rowController(at: index) as! FeedRowController
                         
-                        row.lblTitle.setText("Test Title")
-                        row.lblDueDate.setText("Test DueDate")
+                        
+                        row.lblTitle.setText(titles[index])
+                        row.lblDueDate.setText(dates[index])
                     }
                     
                 }

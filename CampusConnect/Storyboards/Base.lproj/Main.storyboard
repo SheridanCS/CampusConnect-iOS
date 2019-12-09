@@ -126,7 +126,7 @@
                                     <navigationItem title="Register" id="8ro-P8-Wam">
                                         <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="5K9-XL-rln">
                                             <connections>
-                                                <segue destination="7Yf-yL-6tl" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToHomeWithSender:" id="HGb-Bz-lYH"/>
+                                                <segue destination="7Yf-yL-6tl" kind="unwind" unwindAction="unwindToLoginWithSender:" id="OTv-K8-oTg"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

@@ -8,6 +8,12 @@
 
 import WatchKit
 
+/**
+    Row Object to populate the table
+ 
+    - Author: Brian Mulhall
+*/
+
 class FeedRowController: NSObject {
 
     @IBOutlet weak var lblTitle: WKInterfaceLabel!

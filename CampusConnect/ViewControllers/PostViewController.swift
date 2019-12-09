@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class PostViewController: UIViewController {
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
     var post : Post = Post()
@@ -18,6 +19,7 @@ class PostViewController: UIViewController {
     @IBOutlet var lblDescription : UILabel!
     @IBOutlet var navigationBar : UINavigationBar!
 
+    
     @IBAction func sendMessage(sender: UIBarButtonItem) {
         let db = mainDelegate.firestoreDB!
         db.collection("user_chat_list").document(mainDelegate.currentUserId!).collection("conversations").getDocuments() { (querySnapshot, err) in

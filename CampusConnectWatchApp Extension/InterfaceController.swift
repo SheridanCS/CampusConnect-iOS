@@ -9,6 +9,11 @@
 import WatchKit
 import Foundation
 
+/**
+    Interface controller for the home screen of the watch app.
+ 
+    - Author: Brian Mulhall
+*/
 
 class InterfaceController: WKInterfaceController {
 
