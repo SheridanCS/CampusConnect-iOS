@@ -66,7 +66,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 self.presentAlert(title: "Registration Error", message: error!.localizedDescription, preferredStyle: .alert)
             } else {
                 self.mainDelegate.firestoreDB?.collection("users").document((authResult?.user.uid)!).setData([
-                    "full_name": self.tfName.text!
+                    "full_name": self.tfName.text!,
+                    "email": self.tfEmail.text!
                 ])
                 self.performSegue(withIdentifier: "unwindToLogin", sender: self)
             }
