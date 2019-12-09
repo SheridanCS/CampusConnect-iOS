@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15505" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xjV-7L-Jsi">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="25Z-2m-PWT">
+            <objects>
+                <controller id="xjV-7L-Jsi" customClass="InterfaceController" customModule="CampusConnectWatchApp_Extension">
+                    <items>
+                        <label width="136" alignment="left" text="Campus Connect" textAlignment="center" id="tmy-7I-7tR"/>
+                        <button width="1" alignment="left" title="Feed" id="mUQ-PL-fqe">
+                            <connections>
+                                <segue destination="yCq-jJ-9oY" kind="modal" id="k31-fk-RLy"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="187" y="-190"/>
+        </scene>
+        <!--Feed Interface Controller-->
+        <scene sceneID="xyi-yL-wFX">
+            <objects>
+                <controller id="yCq-jJ-9oY" customClass="FeedInterfaceController" customModule="CampusConnectWatchApp_Extension">
+                    <items>
+                        <label alignment="left" text="Posts" id="hWv-6N-p92"/>
+                        <table alignment="left" id="4SE-h7-4xK">
+                            <items>
+                                <tableRow identifier="FeedRow" id="15G-Ua-BbI" customClass="FeedRowController" customModule="CampusConnectWatchApp_Extension">
+                                    <group key="rootItem" width="1" height="48" alignment="left" layout="vertical" id="l05-O4-VRp">
+                                        <items>
+                                            <label alignment="left" text="Title" id="R6X-60-vxO"/>
+                                            <label alignment="left" text="Due Date" id="TJK-sC-jri"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="lblDueDate" destination="TJK-sC-jri" id="Roq-zA-bh2"/>
+                                        <outlet property="lblTitle" destination="R6X-60-vxO" id="2f3-cI-6V0"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="feedTable" destination="4SE-h7-4xK" id="TZf-G4-R3a"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="540" y="-190"/>
+        </scene>
+    </scenes>
+</document>

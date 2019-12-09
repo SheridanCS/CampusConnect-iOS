@@ -11,25 +11,49 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
+import WatchConnectivity
+
+
+ // This is the Table Cell
 class FeedTableViewCell : UITableViewCell {
+    
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postDueDateLabel: UILabel!
     @IBOutlet weak var postDescLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        // Configure the view for the selected state
+    }
+    
 }
 
-
-class FeedTableViewController: UITableViewController {
+ // This is the Table View
+class FeedTableViewController: UITableViewController, WCSessionDelegate {
     
     var db: Firestore!
     
     var posts : [Post] = []
+    
+    var watchFeed : [Post] = []
     
     @IBOutlet var myTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Initiate Conncetion from phone to watch
+        if WCSession.isSupported() {
+            
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,10 +64,19 @@ class FeedTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.posts.removeAll()
         initDetails()
+        
+        //Initiate Conncetion from phone to watch
+        if WCSession.isSupported() {
+            
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
     }
 
     // MARK: - Table view data source
 
+    // Table Stuff
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -70,6 +103,7 @@ class FeedTableViewController: UITableViewController {
     }
 
     
+    // Grabbing the data from database...
     
     var lat : Double?
     var lon : Double?
@@ -87,9 +121,8 @@ class FeedTableViewController: UITableViewController {
                 for document in querySnapshot!.documents {
                     
                     let title = document.get("project_title") as! String
-                    Swift.print(title)
-                    
                     let dueDate = document.get("due_date") as! String
+                    
                     let desc = document.get("project_desc") as! String
                     let num = document.get("num_of_students") as! Int
                     
@@ -104,13 +137,48 @@ class FeedTableViewController: UITableViewController {
                     let postObj = Post()
                     postObj.initWithData(title: title, dueDate: dueDate, desc: desc, numOfStudents: num, location: "PlaceHolder")
                     
+                    let watchPostObj = Post()
+                    watchPostObj.initWithLessData(title: title, dueDate: dueDate)
+                    
+                    
                     self.posts.append(postObj)
+                    self.watchFeed.append(postObj)
                     
                     self.myTableView.reloadData();
                     
                 }
             }
         }
+    }
+    
+    // Watch Stuff
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        
+        Swift.print("did receive messsage")
+        
+        var replyValues = Dictionary<String, AnyObject>()
+        
+        NSKeyedArchiver.setClassName("Post", for: Post.self)
+        
+        let progData = try?
+            NSKeyedArchiver.archivedData(withRootObject: watchFeed, requiringSecureCoding: false)
+        
+        replyValues["postData"] = progData as AnyObject?
+        replyHandler(replyValues)
+            
+    }
+    
+    // Watch Stuff
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
     }
     
     /*
