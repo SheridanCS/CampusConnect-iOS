@@ -23,7 +23,6 @@
 		2D8FA43A238444F6000023E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8FA439238444F6000023E6 /* LoginViewController.swift */; };
 		2D8FA43C23844504000023E6 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8FA43B23844504000023E6 /* RegistrationViewController.swift */; };
 		2D8FA440238448FC000023E6 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8FA43F238448FC000023E6 /* UserViewModel.swift */; };
-		2DDD0900239D421E00FFC11A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD08FF239D421E00FFC11A /* Post.swift */; };
 		2DDD0904239D432000FFC11A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD0901239D432000FFC11A /* MessageCell.swift */; };
 		2DDD0905239D432000FFC11A /* SiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD0902239D432000FFC11A /* SiteCell.swift */; };
 		2DDD0906239D432000FFC11A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD0903239D432000FFC11A /* Message.swift */; };
@@ -33,8 +32,66 @@
 		2DDD0912239DB58B00FFC11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DDD0911239DB58B00FFC11A /* GoogleService-Info.plist */; };
 		2DE1A7732389EE430068CC8D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1A7722389EE430068CC8D /* SceneDelegate.swift */; };
 		2DE1A775238A002E0068CC8D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1A774238A002E0068CC8D /* TabBarViewController.swift */; };
+		D30EB217239D54B400ABB0BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D30EB216239D54B400ABB0BD /* GoogleService-Info.plist */; };
+		D30EB21E239D919400ABB0BD /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30EB21C239D919400ABB0BD /* Interface.storyboard */; };
+		D30EB220239D919A00ABB0BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D30EB21F239D919A00ABB0BD /* Assets.xcassets */; };
+		D30EB227239D919A00ABB0BD /* CampusConnectWatchApp Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D30EB226239D919A00ABB0BD /* CampusConnectWatchApp Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D30EB230239D919A00ABB0BD /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EB22F239D919A00ABB0BD /* ExtensionDelegate.swift */; };
+		D30EB232239D919A00ABB0BD /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EB231239D919A00ABB0BD /* NotificationController.swift */; };
+		D30EB234239D919A00ABB0BD /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EB233239D919A00ABB0BD /* NotificationView.swift */; };
+		D30EB236239D919B00ABB0BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D30EB235239D919B00ABB0BD /* Assets.xcassets */; };
+		D30EB239239D919B00ABB0BD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D30EB238239D919B00ABB0BD /* Preview Assets.xcassets */; };
+		D30EB23E239D919B00ABB0BD /* CampusConnectWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D30EB21A239D919400ABB0BD /* CampusConnectWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D30EB248239D97AA00ABB0BD /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EB247239D97AA00ABB0BD /* InterfaceController.swift */; };
+		D30EB24A239D997400ABB0BD /* FeedInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EB249239D997400ABB0BD /* FeedInterfaceController.swift */; };
+		D30EB24C239D99EF00ABB0BD /* FeedRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EB24B239D99EF00ABB0BD /* FeedRowController.swift */; };
+		D30EB24E239D9EA200ABB0BD /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D30EB24D239D9EA200ABB0BD /* WatchConnectivity.framework */; };
+		D30EB250239D9FBC00ABB0BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD08FF239D421E00FFC11A /* Post.swift */; };
+		D30EB251239D9FBD00ABB0BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD08FF239D421E00FFC11A /* Post.swift */; };
 		EF5C7B1A640B8FDD3E5ABE81 /* Pods_CampusConnect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3749A7982B898654760F0449 /* Pods_CampusConnect.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D30EB228239D919A00ABB0BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D1ECDDE23843AFB00233A8A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D30EB225239D919A00ABB0BD;
+			remoteInfo = "CampusConnectWatchApp Extension";
+		};
+		D30EB23C239D919B00ABB0BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D1ECDDE23843AFB00233A8A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D30EB219239D919400ABB0BD;
+			remoteInfo = CampusConnectWatchApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D30EB242239D919B00ABB0BD /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D30EB227239D919A00ABB0BD /* CampusConnectWatchApp Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D30EB246239D919B00ABB0BD /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D30EB23E239D919B00ABB0BD /* CampusConnectWatchApp.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D1ECDE623843AFB00233A8A /* CampusConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +124,23 @@
 		2DE1A774238A002E0068CC8D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		3749A7982B898654760F0449 /* Pods_CampusConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5248F7884D1D7FF3995E8E40 /* Pods-CampusConnect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusConnect.release.xcconfig"; path = "Target Support Files/Pods-CampusConnect/Pods-CampusConnect.release.xcconfig"; sourceTree = "<group>"; };
+		D30EB216239D54B400ABB0BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D30EB21A239D919400ABB0BD /* CampusConnectWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusConnectWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D30EB21D239D919400ABB0BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		D30EB21F239D919A00ABB0BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D30EB221239D919A00ABB0BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D30EB226239D919A00ABB0BD /* CampusConnectWatchApp Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CampusConnectWatchApp Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D30EB22F239D919A00ABB0BD /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		D30EB231239D919A00ABB0BD /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		D30EB233239D919A00ABB0BD /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		D30EB235239D919B00ABB0BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D30EB238239D919B00ABB0BD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D30EB23A239D919B00ABB0BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D30EB23B239D919B00ABB0BD /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		D30EB247239D97AA00ABB0BD /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		D30EB249239D997400ABB0BD /* FeedInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInterfaceController.swift; sourceTree = "<group>"; };
+		D30EB24B239D99EF00ABB0BD /* FeedRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowController.swift; sourceTree = "<group>"; };
+		D30EB24D239D9EA200ABB0BD /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		F20C545131D5B329C7233A8F /* Pods-CampusConnect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusConnect.debug.xcconfig"; path = "Target Support Files/Pods-CampusConnect/Pods-CampusConnect.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +150,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF5C7B1A640B8FDD3E5ABE81 /* Pods_CampusConnect.framework in Frameworks */,
+				D30EB24E239D9EA200ABB0BD /* WatchConnectivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D30EB223239D919A00ABB0BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				2D1ECDE823843AFB00233A8A /* CampusConnect */,
+				D30EB21B239D919400ABB0BD /* CampusConnectWatchApp */,
+				D30EB22A239D919A00ABB0BD /* CampusConnectWatchApp Extension */,
 				2D1ECDE723843AFB00233A8A /* Products */,
 				BE851492554C125195EA10CB /* Pods */,
 				3BA8D887573BB68C865A693A /* Frameworks */,
@@ -96,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				2D1ECDE623843AFB00233A8A /* CampusConnect.app */,
+				D30EB21A239D919400ABB0BD /* CampusConnectWatchApp.app */,
+				D30EB226239D919A00ABB0BD /* CampusConnectWatchApp Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +271,7 @@
 		3BA8D887573BB68C865A693A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D30EB24D239D9EA200ABB0BD /* WatchConnectivity.framework */,
 				3749A7982B898654760F0449 /* Pods_CampusConnect.framework */,
 			);
 			name = Frameworks;
@@ -199,6 +286,41 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D30EB21B239D919400ABB0BD /* CampusConnectWatchApp */ = {
+			isa = PBXGroup;
+			children = (
+				D30EB21C239D919400ABB0BD /* Interface.storyboard */,
+				D30EB21F239D919A00ABB0BD /* Assets.xcassets */,
+				D30EB221239D919A00ABB0BD /* Info.plist */,
+			);
+			path = CampusConnectWatchApp;
+			sourceTree = "<group>";
+		};
+		D30EB22A239D919A00ABB0BD /* CampusConnectWatchApp Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D30EB22F239D919A00ABB0BD /* ExtensionDelegate.swift */,
+				D30EB231239D919A00ABB0BD /* NotificationController.swift */,
+				D30EB233239D919A00ABB0BD /* NotificationView.swift */,
+				D30EB235239D919B00ABB0BD /* Assets.xcassets */,
+				D30EB23A239D919B00ABB0BD /* Info.plist */,
+				D30EB23B239D919B00ABB0BD /* PushNotificationPayload.apns */,
+				D30EB237239D919B00ABB0BD /* Preview Content */,
+				D30EB247239D97AA00ABB0BD /* InterfaceController.swift */,
+				D30EB249239D997400ABB0BD /* FeedInterfaceController.swift */,
+				D30EB24B239D99EF00ABB0BD /* FeedRowController.swift */,
+			);
+			path = "CampusConnectWatchApp Extension";
+			sourceTree = "<group>";
+		};
+		D30EB237239D919B00ABB0BD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D30EB238239D919B00ABB0BD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -211,15 +333,51 @@
 				2D1ECDE323843AFB00233A8A /* Frameworks */,
 				2D1ECDE423843AFB00233A8A /* Resources */,
 				538946E72F7B6D98EF9170D4 /* [CP] Embed Pods Frameworks */,
+				D30EB246239D919B00ABB0BD /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D30EB23D239D919B00ABB0BD /* PBXTargetDependency */,
 			);
 			name = CampusConnect;
 			productName = CampusConnect;
 			productReference = 2D1ECDE623843AFB00233A8A /* CampusConnect.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D30EB219239D919400ABB0BD /* CampusConnectWatchApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D30EB243239D919B00ABB0BD /* Build configuration list for PBXNativeTarget "CampusConnectWatchApp" */;
+			buildPhases = (
+				D30EB218239D919400ABB0BD /* Resources */,
+				D30EB242239D919B00ABB0BD /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D30EB229239D919A00ABB0BD /* PBXTargetDependency */,
+			);
+			name = CampusConnectWatchApp;
+			productName = CampusConnectWatchApp;
+			productReference = D30EB21A239D919400ABB0BD /* CampusConnectWatchApp.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		D30EB225239D919A00ABB0BD /* CampusConnectWatchApp Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D30EB23F239D919B00ABB0BD /* Build configuration list for PBXNativeTarget "CampusConnectWatchApp Extension" */;
+			buildPhases = (
+				D30EB222239D919A00ABB0BD /* Sources */,
+				D30EB223239D919A00ABB0BD /* Frameworks */,
+				D30EB224239D919A00ABB0BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CampusConnectWatchApp Extension";
+			productName = "CampusConnectWatchApp Extension";
+			productReference = D30EB226239D919A00ABB0BD /* CampusConnectWatchApp Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -233,6 +391,12 @@
 				TargetAttributes = {
 					2D1ECDE523843AFB00233A8A = {
 						CreatedOnToolsVersion = 11.2;
+					};
+					D30EB219239D919400ABB0BD = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					D30EB225239D919A00ABB0BD = {
+						CreatedOnToolsVersion = 11.2.1;
 					};
 				};
 			};
@@ -250,6 +414,8 @@
 			projectRoot = "";
 			targets = (
 				2D1ECDE523843AFB00233A8A /* CampusConnect */,
+				D30EB219239D919400ABB0BD /* CampusConnectWatchApp */,
+				D30EB225239D919A00ABB0BD /* CampusConnectWatchApp Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -264,6 +430,24 @@
 				2DDD0912239DB58B00FFC11A /* GoogleService-Info.plist in Resources */,
 				2D1ECDF123843AFB00233A8A /* Main.storyboard in Resources */,
 				2DDD090E239D49FA00FFC11A /* banner.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D30EB218239D919400ABB0BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D30EB220239D919A00ABB0BD /* Assets.xcassets in Resources */,
+				D30EB21E239D919400ABB0BD /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D30EB224239D919A00ABB0BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D30EB239239D919B00ABB0BD /* Preview Assets.xcassets in Resources */,
+				D30EB236239D919B00ABB0BD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +513,6 @@
 				2D8FA43623844415000023E6 /* CollaborationsTableViewController.swift in Sources */,
 				2D8FA42623844070000023E6 /* Campus.swift in Sources */,
 				2D8FA440238448FC000023E6 /* UserViewModel.swift in Sources */,
-				2DDD0900239D421E00FFC11A /* Post.swift in Sources */,
 				2D8FA430238443A3000023E6 /* NewPostViewController.swift in Sources */,
 				2DDD0904239D432000FFC11A /* MessageCell.swift in Sources */,
 				2D8FA43823844436000023E6 /* ChatListViewController.swift in Sources */,
@@ -337,10 +520,38 @@
 				2DDD0908239D466100FFC11A /* ChatViewController.swift in Sources */,
 				2D8FA43A238444F6000023E6 /* LoginViewController.swift in Sources */,
 				2DDD0910239D5B3C00FFC11A /* EditProfileViewController.swift in Sources */,
+				D30EB251239D9FBD00ABB0BD /* Post.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D30EB222239D919A00ABB0BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D30EB232239D919A00ABB0BD /* NotificationController.swift in Sources */,
+				D30EB248239D97AA00ABB0BD /* InterfaceController.swift in Sources */,
+				D30EB230239D919A00ABB0BD /* ExtensionDelegate.swift in Sources */,
+				D30EB24A239D997400ABB0BD /* FeedInterfaceController.swift in Sources */,
+				D30EB24C239D99EF00ABB0BD /* FeedRowController.swift in Sources */,
+				D30EB250239D9FBC00ABB0BD /* Post.swift in Sources */,
+				D30EB234239D919A00ABB0BD /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D30EB229239D919A00ABB0BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D30EB225239D919A00ABB0BD /* CampusConnectWatchApp Extension */;
+			targetProxy = D30EB228239D919A00ABB0BD /* PBXContainerItemProxy */;
+		};
+		D30EB23D239D919B00ABB0BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D30EB219239D919400ABB0BD /* CampusConnectWatchApp */;
+			targetProxy = D30EB23C239D919B00ABB0BD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2D1ECDEF23843AFB00233A8A /* Main.storyboard */ = {
@@ -357,6 +568,14 @@
 				2D1ECDF523843AFC00233A8A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D30EB21C239D919400ABB0BD /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D30EB21D239D919400ABB0BD /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -514,6 +733,90 @@
 			};
 			name = Release;
 		};
+		D30EB240239D919B00ABB0BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CampusConnectWatchApp Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = W8G3CBV48F;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "CampusConnectWatchApp Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.prog31975.CampusConnect.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		D30EB241239D919B00ABB0BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CampusConnectWatchApp Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = W8G3CBV48F;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "CampusConnectWatchApp Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.prog31975.CampusConnect.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		D30EB244239D919B00ABB0BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				IBSC_MODULE = CampusConnectWatchApp_Extension;
+				INFOPLIST_FILE = CampusConnectWatchApp/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.prog31975.CampusConnect.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		D30EB245239D919B00ABB0BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				IBSC_MODULE = CampusConnectWatchApp_Extension;
+				INFOPLIST_FILE = CampusConnectWatchApp/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.prog31975.CampusConnect.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -531,6 +834,24 @@
 			buildConfigurations = (
 				2D1ECDFB23843AFC00233A8A /* Debug */,
 				2D1ECDFC23843AFC00233A8A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D30EB23F239D919B00ABB0BD /* Build configuration list for PBXNativeTarget "CampusConnectWatchApp Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D30EB240239D919B00ABB0BD /* Debug */,
+				D30EB241239D919B00ABB0BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D30EB243239D919B00ABB0BD /* Build configuration list for PBXNativeTarget "CampusConnectWatchApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D30EB244239D919B00ABB0BD /* Debug */,
+				D30EB245239D919B00ABB0BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
