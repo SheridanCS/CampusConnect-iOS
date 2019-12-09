@@ -10,14 +10,14 @@ import UIKit
 import Foundation
 
 class Post: NSObject {
-    
+    var posterID : String?
     var title : String?
     var dueDate : String?
     var desc : String?
     var numOfStudents : Int?
     var location : String?
     
-    func initWithData(title:String, dueDate:String, desc:String, numOfStudents:Int, location:String) {
+    func initWithData(title: String, dueDate: String, desc: String, numOfStudents: Int, location: String) {
         
         self.title = title
         self.dueDate = dueDate

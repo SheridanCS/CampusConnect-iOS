@@ -33,16 +33,15 @@ class FeedTableViewCell : UITableViewCell {
     
 }
 
- // This is the Table View
 class FeedTableViewController: UITableViewController, WCSessionDelegate {
-    
-    var db: Firestore!
-    
+    var mainDelegate = UIApplication.shared.delegate as! AppDelegate
     var posts : [Post] = []
+    var selectedPost : Int = 0
     
     var watchFeed : [Post] = []
     
     @IBOutlet var myTableView: UITableView!
+    @IBAction func unwindToFeed(sender: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +88,6 @@ class FeedTableViewController: UITableViewController, WCSessionDelegate {
         return 80
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let tableCell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedTableViewCell ?? FeedTableViewCell(style: .default, reuseIdentifier: "FeedCell")
@@ -102,24 +100,30 @@ class FeedTableViewController: UITableViewController, WCSessionDelegate {
         return tableCell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPost = indexPath.row
+        performSegue(withIdentifier: "ShowSinglePostSegue", sender: nil)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowSinglePostSegue") {
+            let vc: PostViewController = segue.destination as! PostViewController
+            vc.post = self.posts[selectedPost]
+        }
+    }
     
     // Grabbing the data from database...
     
     var lat : Double?
     var lon : Double?
     
-    func initDetails()
-    {
-        
-        db = Firestore.firestore()
-        
+    func initDetails() {
+        let db = mainDelegate.firestoreDB!
         db.collection("posts").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                
                 for document in querySnapshot!.documents {
-                    
                     let title = document.get("project_title") as! String
                     let dueDate = document.get("due_date") as! String
                     
@@ -145,7 +149,6 @@ class FeedTableViewController: UITableViewController, WCSessionDelegate {
                     self.watchFeed.append(postObj)
                     
                     self.myTableView.reloadData();
-                    
                 }
             }
         }

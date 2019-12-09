@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ChatListViewController: UITableViewController {
     @IBOutlet var myTable : UITableView!
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
     var timer : Timer!
+    var conversationList : [String] = []
+    var friendsList : [String] = []
+    var friends : [ConnectUser] = []
 
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
@@ -19,43 +23,62 @@ class ChatListViewController: UITableViewController {
        }
 
        @objc func refreshTable(){
-        if(mainDelegate.people.count > 0){
-               self.myTable.reloadData()
-               self.timer.invalidate()
+        if (conversationList.count > 0) {
+            self.myTable.reloadData()
+            self.timer.invalidate()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Messages"
+        self.getConversationIDs()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainDelegate.people.count
+        return self.conversationList.count
     }
 
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      return 80
+        return 80
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let tableCell : SiteCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? SiteCell ?? SiteCell (style: .default, reuseIdentifier: "cell")
-
-        let rowNum = indexPath.row
-        tableCell.primaryLabel.text = mainDelegate.people[rowNum].name
-        print("here:", mainDelegate.people[rowNum].name)
+        tableCell.primaryLabel.text = self.friends[indexPath.row].name
         return tableCell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let friend = mainDelegate.people[indexPath.row]
-        print("selected: ", friend.name)
-
         let vc = ChatViewController()
-        vc.friend = friend
+        vc.conversationID = self.conversationList[indexPath.row]
+        vc.recipientUser = self.friends[indexPath.row]
 
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func getConversationIDs() {
+        let uid = mainDelegate.currentUserId
+        print("Getting conversation IDs")
+        print(uid!)
+        mainDelegate.firestoreDB?.collection("user_chat_list").document(uid!).collection("conversations").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let conversationId = document.get("conversation_id") as! String
+                    let friendId = document.get("friend_id") as! String
+                    print(conversationId, friendId)
+                    self.conversationList.append(conversationId)
+                    self.friendsList.append(friendId)
+                    self.mainDelegate.firestoreDB?.collection("users").document(friendId).getDocument { (document, err) in
+                        let cUser = ConnectUser()
+                        cUser.name = document?.get("full_name") as! String
+                        self.friends.append(cUser)
+                        self.refreshTable()
+                    }
+                }
+            }
+        }
     }
 }

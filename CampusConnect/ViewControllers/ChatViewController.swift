@@ -8,13 +8,14 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class ChatViewController: UITableViewController {
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
     private let db = Firestore.firestore()
-    var currentUser : User!
-    private var friendConvoID = "nil"
-    var friend: User!
+    var currentUser : ConnectUser?
+    var recipientUser : ConnectUser?
+    var conversationID : String? = nil
     var messages: [Message] = []
     
     //add text field should return!
@@ -28,60 +29,25 @@ class ChatViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = friend.name
+        navigationItem.title = recipientUser?.name
         navigationController?.navigationBar.prefersLargeTitles = false
         setupInputComponents()
         tableView.register(MessageCell.self, forCellReuseIdentifier: "id")
         tableView.separatorStyle = .none
-        currentUser = mainDelegate.currentUser ?? User()
-            db.collection("user_chat_list").document(self.currentUser.id!).collection("friends").getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    
-                    //loops through user IDs in user_chat_list
-                    for document in querySnapshot!.documents {
-                        
-                        //finds the friend user ID
-                        if(document.documentID == (self.friend.id!)){
-                            
-                            print("found person")
-                            //finds the convo we are talking to
-                            if document.get("convoID") != nil {
-                                self.friendConvoID = document.get("convoID") as! String
-                                print("found friend")
-                                self.getConversation()
-                            }
-                            
-                        }
-        
-                    }
+        db.collection("conversations").document(self.conversationID!).collection("messages").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("found convo")
+                    let msg = Message(txt: (document.get("message") as! String), sndr: (document.get("sender") as! String))
+                    self.messages.append(msg)
+                    print(document.get("message") as! String)
                 }
             }
-        
-    }
-
-    func getConversation(){
-        
-        if(self.friendConvoID != "nil"){
-            db.collection("conversations").document(friendConvoID).collection("Messages").getDocuments()
-                { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        print("found convo")
-                        let msg = Message(txt: (document.get("message") as! String), sndr: (document.get("sender") as! String))
-                        self.messages.append(msg)
-                        print(document.get("message") as! String)
-                    }
-                }
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-            }
-            
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,7 +58,7 @@ class ChatViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "id", for: indexPath) as! MessageCell
     
         cell.messageLabel.text = messages[indexPath.row].content
-        if messages[indexPath.row].sender == currentUser.name
+        if messages[indexPath.row].sender == mainDelegate.currentUserObj.name
         { cell.isIncoming = false } else { cell.isIncoming = true }
         return cell
     }
@@ -100,9 +66,7 @@ class ChatViewController: UITableViewController {
     func setupInputComponents(){
         let containerView = UIView()
         containerView.backgroundColor = UIColor.white
-    
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(containerView)
         
         let height = CGFloat(50)
@@ -125,64 +89,31 @@ class ChatViewController: UITableViewController {
             sendButton.widthAnchor.constraint(equalToConstant: 80),
             sendButton.heightAnchor.constraint(equalTo: containerView.heightAnchor)
         ])
-        
-        
+
         containerView.addSubview(inputTextField)
-        
         NSLayoutConstraint.activate([
             inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8),
             inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor),
             inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor)
         ])
-        
     }
     
-    @objc func handleSend(){
-
-        if friendConvoID == "nil"{
-
-            friendConvoID = (self.currentUser.id! + "" + friend.id!)
-            db.collection("user_chat_list").document(self.currentUser.id!).collection("friends").document(friend.id!).setData(["convoID" : friendConvoID
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                }
-            }
-            
-        }
+    @objc func handleSend() {
         saveMessage(message: inputTextField.text!)
         inputTextField.text = ""
     }
 
-    
+    func saveMessage(message:String) {
+        db.collection("conversations").document(conversationID!).collection("messages").addDocument(data: [
+            "sender": self.mainDelegate.currentUserObj.name,
+            "message": message,
+            "timestamp": FieldValue.serverTimestamp()
+        ])
 
-    func saveMessage(message:String){
-
-        //func
-        let currentDateTime = Date()
-        let formatter = DateFormatter()
-        formatter.timeStyle = .medium
-        formatter.dateStyle = .long
-        let time = formatter.string(from: currentDateTime)
-       //conversations / convoID / time / Message / []
-        db.collection("conversations").document(friendConvoID).collection("Messages").document(time).setData([ "sender":currentUser.name, "message":message
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                }
-            }
-        let msg = Message(txt: message, sndr: currentUser.name)
+        let msg = Message(txt: message, sndr: self.mainDelegate.currentUserObj.name)
         self.messages.append(msg)
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
-
     }
-
-    
-    
 }
