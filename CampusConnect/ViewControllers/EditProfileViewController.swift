@@ -38,7 +38,7 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
     
     func getSkills(){
         let db = mainDelegate.firestoreDB
-        let ref = db!.collection("users").document("zWXtptUUxNOrwf0tTKW65pG5zF12")
+        let ref = db!.collection("users").document(mainDelegate.currentUserId!)
         ref.getDocument { (snapshot, err) in
             if let data = snapshot?.data() {
                 let temp = data["skills"] as! [String]
@@ -52,7 +52,7 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
     
     @IBAction func updateDB(_ sender: Any) {
         if (txtName.text != "" && txtEmail.text != ""){
-            let ref = mainDelegate.firestoreDB!.collection("users").document("zWXtptUUxNOrwf0tTKW65pG5zF12")
+            let ref = mainDelegate.firestoreDB!.collection("users").document(mainDelegate.currentUserId!)
             let docData: [String: Any] = [
                 "full_name": txtName.text!,
                 "program": picker2Options[pickerProgram.selectedRow(inComponent: 0)],
@@ -65,7 +65,9 @@ class EditProfileViewController: UIViewController , UIPickerViewDelegate, UIPick
                     print("Error writing document: \(err)")
                 }
             }
-            updateEmail()
+            if txtEmail.text != Auth.auth().currentUser?.email! {
+                updateEmail()
+            }
             let alert = UIAlertController(title: "Succesful", message: "Profile Information Updated", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)

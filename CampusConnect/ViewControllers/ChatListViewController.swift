@@ -75,10 +75,10 @@ class ChatListViewController: UITableViewController {
                         let cUser = ConnectUser()
                         cUser.name = document?.get("full_name") as! String
                         self.friends.append(cUser)
-                        self.refreshTable()
                     }
                 }
             }
         }
+        self.refreshTable()
     }
 }
