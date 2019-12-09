@@ -27,4 +27,28 @@ class Post: NSObject {
         
     }
     
+    func initWithLessData(title:String, dueDate:String) {
+        
+        self.title = title
+        self.dueDate = dueDate
+        
+    }
+    
+    // Encode the object into bits to send to the watch
+     func encode(with aCoder: NSCoder) {
+         aCoder.encode(self.title, forKey : "title")
+         aCoder.encode(self.dueDate, forKey : "dueDate")
+     }
+     
+     
+     required convenience init?(coder aDecoder: NSCoder) {
+         
+         guard let title = aDecoder.decodeObject(forKey: "title") as? String,
+             let dueDate = aDecoder.decodeObject(forKey: "dueDate") as? String
+             else { return nil }
+         
+        self.init()
+        self.initWithLessData(title: title, dueDate: dueDate)
+     }
+    
 }
