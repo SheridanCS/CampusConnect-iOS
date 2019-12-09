@@ -72,6 +72,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     "program": AvailablePrograms().programs[0],
                     "skills": []
                 ])
+//                self.mainDelegate.firestoreDB?.collection("user_chat_list").document((authResult?.user.uid)!).setData
                 self.dismiss(animated: true, completion: nil)
             }
         }

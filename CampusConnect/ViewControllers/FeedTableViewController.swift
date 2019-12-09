@@ -124,9 +124,9 @@ class FeedTableViewController: UITableViewController, WCSessionDelegate {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
+                    let posterID = document.get("poster_id") as! String
                     let title = document.get("project_title") as! String
                     let dueDate = document.get("due_date") as! String
-                    
                     let desc = document.get("project_desc") as! String
                     let num = document.get("num_of_students") as! Int
                     
@@ -140,6 +140,7 @@ class FeedTableViewController: UITableViewController, WCSessionDelegate {
                     
                     let postObj = Post()
                     postObj.initWithData(title: title, dueDate: dueDate, desc: desc, numOfStudents: num, location: "PlaceHolder")
+                    postObj.posterID = posterID
                     
                     let watchPostObj = Post()
                     watchPostObj.initWithLessData(title: title, dueDate: dueDate)
