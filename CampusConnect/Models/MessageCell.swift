@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+    Provides the container for the table cell data within a chat conversation.
+
+    - Author: Laura Gonzalez
+*/
 class MessageCell: UITableViewCell {
     let messageLabel = UILabel()
     let bubbleBackgroundView = UIView()
@@ -15,7 +20,7 @@ class MessageCell: UITableViewCell {
     var leadingConstraint: NSLayoutConstraint!
     var trailingConstraint: NSLayoutConstraint!
     
-    var isIncoming: Bool!{
+    var isIncoming: Bool! {
         didSet {
             bubbleBackgroundView.backgroundColor = isIncoming ? .lightGray : .blue
             messageLabel.textColor = isIncoming ? .black : .white
@@ -29,7 +34,13 @@ class MessageCell: UITableViewCell {
             }
         }
     }
-    
+
+    /**
+        Description of class or function
+
+        - Parameter style: UITableViewCell.CellStyle style for the table cell.
+        - Parameter reuseIdentifier: String of the identifier.
+    */
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:style, reuseIdentifier: reuseIdentifier)
         

@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+    List of all the available programs at Sheridan.
+
+    - Author: Timothy Catibog
+*/
 class AvailablePrograms : NSObject {
     let programs : [String] = [
         "Accounting, Business Administration",

@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+    Model of the user of the application.
+
+    - Author: Timothy Catibog
+*/
 class ConnectUser : NSObject {
     var id : String?
     var name : String
@@ -16,6 +21,9 @@ class ConnectUser : NSObject {
     var program : String
     var skills : [String]?
 
+    /**
+        Initialize an empty/default object of this class.
+    */
     override init() {
         self.name = ""
         self.email = ""
@@ -23,6 +31,14 @@ class ConnectUser : NSObject {
         self.program = ""
     }
 
+    /**
+        Initialize an object of this class with data.
+
+        - Parameter name: The full name of the user.
+        - Parameter email: The email address of the user.
+        - Parameter campus: The campus of the user.
+        - Parameter program: The program the user is taking at Sheridan.
+    */
     init(name: String, email: String, campus: Campus, program: String) {
         self.name = name
         self.email = email
