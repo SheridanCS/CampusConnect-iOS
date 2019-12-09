@@ -400,7 +400,9 @@
                             <outlet property="delegate" destination="asP-yN-B9I" id="WZA-lZ-FJn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Messages" id="YIR-UX-j3y"/>
+                    <navigationItem key="navigationItem" title="Messages" id="YIR-UX-j3y">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HQU-kn-lWV"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="myTable" destination="QFm-xz-Ral" id="Hyd-rT-XNc"/>
                     </connections>

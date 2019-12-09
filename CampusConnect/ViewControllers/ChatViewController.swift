@@ -1,6 +1,6 @@
 //
-//  Chat_ViewController.swift
-//  CampusCollab
+//  ChatViewController.swift
+//  CampusConnect
 //
 //  Created by Laura Gonzalez on 2019-12-05.
 //  Copyright © 2019 Laura Gonzalez. All rights reserved.
@@ -10,15 +10,20 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+/**
+    ChatViewController is a tableview that organizes and displays messages sent between the user and their "friend", another user in the database
+
+    - Author: Laura
+*/
+
 class ChatViewController: UITableViewController {
+    //declare necessary variables and outlets
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
-    private let db = Firestore.firestore()
+    private var db: Firestore!
     var currentUser : ConnectUser?
     var recipientUser : ConnectUser?
     var conversationID : String? = nil
     var messages: [Message] = []
-    
-    //add text field should return!
     
     let inputTextField : UITextField = {
         let textField = UITextField()
@@ -27,8 +32,15 @@ class ChatViewController: UITableViewController {
         return textField
     }()
 
+    /**
+        upon load, checks to see if a convrsation already exists and if it does, it grabs the messages, adding them onto message string array
+            Then refreshes table to make sure messages grabbed are reflected on chat view (message bubbles appear)
+     
+        - Author: Laura
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
+        db = mainDelegate.firestoreDB
         navigationItem.title = recipientUser?.name
         navigationController?.navigationBar.prefersLargeTitles = false
         setupInputComponents()
@@ -63,6 +75,12 @@ class ChatViewController: UITableViewController {
         return cell
     }
     
+    /**
+        Adds UIViews for the bottom half of user chat, including send button and text field
+         - Organizes using anchors and safeAreaLayoutGuide to make it look like a  user chat
+
+        - Author: Laura
+    */
     func setupInputComponents(){
         let containerView = UIView()
         containerView.backgroundColor = UIColor.white
@@ -99,11 +117,24 @@ class ChatViewController: UITableViewController {
         ])
     }
     
+    /**
+        calls save message and clears text input field
+
+        - Author: Laura
+    */
     @objc func handleSend() {
         saveMessage(message: inputTextField.text!)
         inputTextField.text = ""
     }
 
+    /**
+        gets user conversation database collection and saves the messages sender, content, and timestamp
+            saves message according to conversation ID linked to user ID
+                    
+     
+        - Parameter message: Sting content of message being sent.
+        - Author: Laura
+     */
     func saveMessage(message:String) {
         db.collection("conversations").document(conversationID!).collection("messages").addDocument(data: [
             "sender": self.mainDelegate.currentUserObj.name,
@@ -116,4 +147,5 @@ class ChatViewController: UITableViewController {
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
+    
 }

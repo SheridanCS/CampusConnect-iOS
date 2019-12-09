@@ -41,7 +41,7 @@ class MessageCell: UITableViewCell {
         addSubview(bubbleBackgroundView)
         addSubview(messageLabel)
        // messageLabel.backgroundColor = .lightGray
-        messageLabel.text = "okfdojv fjdjifewp cdjsofndos fdhioofehnw"
+        //messageLabel.text = ""
         messageLabel.numberOfLines = 0
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
