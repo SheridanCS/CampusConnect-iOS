@@ -12,9 +12,7 @@ import FirebaseAuth
 /**
     ViewController to handle login functionality.
 
-    - Parameter name: The full name of the user.
-    - Returns: self.
-    - Author: Your name
+    - Author: Timothy Catibog
 */
 class LoginViewController: UIViewController {
 
