@@ -9,6 +9,11 @@
 import UIKit
 import Firebase
 
+/**
+    Displays single post view
+
+    - Author: Tim
+*/
 class PostViewController: UIViewController {
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
     var post : Post = Post()
@@ -18,8 +23,13 @@ class PostViewController: UIViewController {
     @IBOutlet var lblDescription : UILabel!
     @IBOutlet var navigationBar : UINavigationBar!
 
+    /**
+        Create conversation between current logged in user and poster.
+        - Parameter sender: Reference to the connected object in the storyboard.
+    */
     @IBAction func sendMessage(sender: UIBarButtonItem) {
         let db = mainDelegate.firestoreDB!
+        // Get list of conversation IDs and the recipient user ID
         db.collection("user_chat_list").document(mainDelegate.currentUserId!).collection("conversations").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -35,6 +45,8 @@ class PostViewController: UIViewController {
                     }
                 }
 
+                // Create new conversation document in Firebase if conversation between current user and poster
+                // if conversation does not yet already exist.
                 if !conversationExists {
                     var conversationRef: DocumentReference? = nil
                     conversationRef = db.collection("conversations").addDocument(data: [:]) { err in
@@ -60,6 +72,9 @@ class PostViewController: UIViewController {
         }
     }
 
+    /**
+        Initialize data during view lifecycle method viewDidLoad.
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.topItem?.title = post.title!

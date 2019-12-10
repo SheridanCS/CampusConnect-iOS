@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+    Enum of the Sheridan campuses.
+    - Author: Timothy Catibog
+*/
 enum Campus : String {
     case davis = "Davis"
     case hmc = "Hazel McCallion"

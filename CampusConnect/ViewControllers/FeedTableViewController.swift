@@ -13,8 +13,11 @@ import FirebaseFirestore
 
 import WatchConnectivity
 
-
- // This is the Table Cell
+/**
+    This is the Table Cell
+ 
+    - Author: Brian
+*/
 class FeedTableViewCell : UITableViewCell {
     
     @IBOutlet weak var postTitleLabel: UILabel!
@@ -33,6 +36,11 @@ class FeedTableViewCell : UITableViewCell {
     
 }
 
+/**
+    Feed table view displays all posts by users on the app.
+ 
+    - Author: Brian
+*/
 class FeedTableViewController: UITableViewController, WCSessionDelegate {
     var mainDelegate = UIApplication.shared.delegate as! AppDelegate
     var posts : [Post] = []
@@ -53,11 +61,6 @@ class FeedTableViewController: UITableViewController, WCSessionDelegate {
             session.delegate = self
             session.activate()
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,8 +115,10 @@ class FeedTableViewController: UITableViewController, WCSessionDelegate {
         }
     }
     
-    // Grabbing the data from database...
-    
+    /**
+        Grabbing the data from database to display
+        - Author: Brian
+    */
     var lat : Double?
     var lon : Double?
     

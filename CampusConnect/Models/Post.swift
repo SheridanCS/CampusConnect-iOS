@@ -9,6 +9,10 @@
 import UIKit
 import Foundation
 
+/**
+    Model to represent the Posts within the application.
+    - Author: Brian Mulhall
+*/
 class Post: NSObject {
     var posterID : String?
     var title : String?
@@ -17,6 +21,14 @@ class Post: NSObject {
     var numOfStudents : Int?
     var location : String?
     
+    /**
+        Initialize method with data
+        - Parameter title: Title of the project.
+        - Parameter dueDate: Due date of the project.
+        - Parameter desc: Description of the project.
+        - Parameter numOfStudents: Number of total users required for the project.
+        - Parameter location: Geolocation of where the project is going to take place.
+    */
     func initWithData(title: String, dueDate: String, desc: String, numOfStudents: Int, location: String) {
         
         self.title = title
@@ -34,13 +46,19 @@ class Post: NSObject {
         
     }
     
-    // Encode the object into bits to send to the watch
-     func encode(with aCoder: NSCoder) {
+    /**
+        Encode the object into bits to send to the watch.
+        - Parameter with: Object to encode data into.
+    */
+    func encode(with aCoder: NSCoder) {
          aCoder.encode(self.title, forKey : "title")
          aCoder.encode(self.dueDate, forKey : "dueDate")
      }
      
-     
+     /**
+         Convenience initializer
+         - Parameter coder: Object to decode data from.
+     */
      required convenience init?(coder aDecoder: NSCoder) {
          
          guard let title = aDecoder.decodeObject(forKey: "title") as? String,

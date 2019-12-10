@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+/**
+    NOT IN USE.
+   Future implementations show collaborative posts.
+*/
 class CollaborationsTableViewController: UITableViewController {
 
     override func viewDidLoad() {

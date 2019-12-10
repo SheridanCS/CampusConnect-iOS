@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+/**
+    AppDelegate that handles the instantiation of the Firebase application and Cloud Firestore DB
+    - Author: Timothy Catibog
+*/
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -27,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: UISceneSession Lifecycle
-
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
@@ -40,6 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    /**
+        Once login is completed, populate the current user's ID and data.
+    */
     func updateCurrentUser() {
         self.firestoreDB?.collection("users").document(self.currentUserId!).getDocument { (document, err) in
             self.currentUserObj = ConnectUser()
