@@ -14,7 +14,7 @@ import FirebaseAuth
         Associations between user and friends are saved in the database
             Upon clicking on a username, it brings them to a chatview where they can then send messages
  
-    - Author: Laura & Tim
+    - Author: Laura
 */
 
 class ChatListViewController: UITableViewController {

@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var firestoreDB : Firestore?
     var currentUserId : String?
     var currentUserObj : ConnectUser = ConnectUser()
-//    var people : [User] = []
-//    var currentUser : User!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
